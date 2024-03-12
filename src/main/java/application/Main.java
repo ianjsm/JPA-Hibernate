@@ -11,7 +11,15 @@ public class Main {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("exemplo-jpa");
 		EntityManager em = emf.createEntityManager();
 		
-		Pessoa p = em.find(Pessoa.class, 2);
+		Pessoa p1 = new Pessoa(null, "Jeremias Jacó", "jeremias@gmail.com");
+		
+		em.getTransaction();
+		em.persist(p1);
+		em.getTransaction().commit();
+		System.out.println("ADD DONE!");
+		
+
+		Pessoa p = em.find(Pessoa.class, 2);		
 		em.getTransaction().begin();
 		em.remove(p);
 		em.getTransaction().commit();
